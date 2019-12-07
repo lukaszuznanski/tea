@@ -13,6 +13,14 @@ services:
 env:
   global:
   - typo3DatabaseHost=localhost typo3DatabaseName=typo3 typo3DatabaseUsername=travis typo3DatabasePassword=''
+  jobs:
+  - TYPO3=^9.5
+  # no TYPO3 v10 build at the moment since we require extensions that are not v10-compatible currently
+
+php:
+- 7.2
+- 7.3
+- 7.4
 
 cache:
   directories:
@@ -49,15 +57,6 @@ script:
 
 jobs:
   include:
-  - stage: test
-    php: "7.4"
-    env: TYPO3=^9.5
-  - stage: test
-    php: "7.3"
-    env: TYPO3=^9.5
-  - stage: test
-    php: "7.2"
-    env: TYPO3=^9.5
   - stage: release to ter
     if: tag IS present AND env(TYPO3_ORG_USERNAME) IS present AND env(TYPO3_ORG_PASSWORD) IS present
     php: "7.2"
