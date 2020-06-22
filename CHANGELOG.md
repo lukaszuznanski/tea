@@ -6,6 +6,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ## x.y.z
 
 ### Added
+- Run the functional tests via GitHub Actions (#55)
 - Cache Composer dependencies in build (#31)
 - Add a status badge for GitHub actions (#32)
 - Composer script for PHP code sniffer fixing (#21)
@@ -18,6 +19,8 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - Composer script for PHP linting
 
 ### Changed
+- Disable running with lower dependencies on GitHub actions (#54)
+- Move the project to the TYPO3 Documentation Team (#47)
 - Run unit tests with GitHub actions (#37)
 - Switch from PSR-2 to PSR-12 (#3, #35)
 - Move TypoScript linting to GitHub actions (#14)
@@ -30,11 +33,12 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - Sort the Composer dependencies
 - Upgrade PHPUnit to 7.5.14
 - Change from GPL V3+ to GPL V2+
-- Streamline ext_emconf.php
+- Streamline `ext_emconf.php`
 
 ### Deprecated
 
 ### Removed
+- Drop obsolete `dividers2tabs` from the TCA (#44)
 - Drop obsolete parts from the README (#34)
 - Drop unneeded Travis CI configuration settings
 - Drop `ext_icon.svg`
@@ -46,9 +50,12 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - Drop the dependency of `roave/security-advisories`
 
 ### Fixed
+- Avoid unwanted higher PHP versions (#50)
+- Stop caching `vendor/` on Travis CI (#51)
+- Use the PHP version from the matrix in the CI (#48)
 - Re-add the static TypoScript registration (#41)
 - Keep the global namespace clean in `ext_localconf.php` (#40)
-- Update the badge URLs in the README (#29, #22)
+- Update the badge URLs in the `README` (#29, #22)
 - Fix code inspection warnings
 - Use the new annotations for lazy loading
 - Update and pin the dev dependencies
