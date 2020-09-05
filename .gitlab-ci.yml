@@ -1,0 +1,49 @@
+---
+stages:
+  - build
+  - code_quality
+  - test
+
+include:
+  - template: License-Management.gitlab-ci.yml
+  - template: SAST.gitlab-ci.yml
+  - template: Code-Quality.gitlab-ci.yml
+
+default:
+  image: php:7.4
+  before_script:
+    - bash .gitlab/build/docker_install.sh > /dev/null
+
+build-composer-dependencies:
+  stage: build
+  variables:
+    COMPOSER_CACHE_DIR: '.composer'
+  script:
+    - COMPOSER_CACHE_DIR=.composer
+      composer install --prefer-dist --no-progress --optimize-autoloader
+  artifacts:
+    when: on_success
+    expire_in: 2 weeks
+    paths:
+      - .Build
+  cache:
+    paths:
+      - .composer
+      - .Build
+
+phpcs:
+  stage: code_quality
+  script:
+    - composer ci:php:sniff
+
+code_quality:
+  before_script: []
+
+eslint-sast:
+  before_script: []
+
+phpcs-security-audit-sast:
+  before_script: []
+
+secrets-sast:
+  before_script: []
